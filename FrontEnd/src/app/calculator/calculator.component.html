@@ -1,25 +1,17 @@
-<div class="container calculator">
-    <div class="row">
-        <div class="col">
-            <h1>Calculator</h1>
-        </div>
+<div class="calculator p-3">
+    <div class="border">
+
+        <h1>Calculator</h1>
+        <h2>{{equationString}}</h2>
+        <h2>{{result}}</h2>
     </div>
 
-    <div class="row">
-        <div class="col">
-            <h2>{{equationString}}</h2>
-        </div>
-    </div>
+    <div class="container">
+        <div class="row" *ngFor="let row of grid">
+            <div class="col-2" *ngFor="let col of row">
 
-    <div class="row">
-        <div class="col">
-            <h2>{{result}}</h2>
-        </div>
-    </div>
-
-    <div class="row" *ngFor="let row of grid">
-        <div class="col-2" *ngFor="let col of row">
-            <button class="btn btn-primary" (click)="onButtonClick(col)">{{col}}</button>
+                <button class="btn {{col[1]}} calc-button" (click)="onButtonClick(col)">{{col[0]}}</button>
+            </div>
         </div>
     </div>
 </div>

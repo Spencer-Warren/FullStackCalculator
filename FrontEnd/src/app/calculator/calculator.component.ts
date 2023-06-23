@@ -7,12 +7,13 @@ import { Component } from '@angular/core';
 })
 export class CalculatorComponent {
 
-  grid: string[][] = 
+  grid: string[][][] = 
   [
-    ['7', '8', '9', '/'],
-    ['4', '5', '6', '*'],
-    ['1', '2', '3', '-'],
-    ['0', '.', '=', '+']
+    [['C',   'red' ], ['CE', 'red'], ['%'], ['/']         ],
+    [['7',   'blue'], ['8', 'blue'], ['9', 'blue'], ['*'] ],
+    [['4',   'blue'], ['5', 'blue'], ['6', 'blue'], ['+'] ],
+    [['1',   'blue'], ['2', 'blue'], ['3', 'blue'], ['-'] ],
+    [['-/+', 'blue'], ['0', 'blue'], ['.'], ['=']         ]
   ];
 
   operatorState: string = '';

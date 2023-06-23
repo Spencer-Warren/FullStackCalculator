@@ -23,7 +23,28 @@ footer {
 }
 
 .calculator {
+    width: 300px;
     margin: 10px;
-
     border: #465362 1px solid;
+}
+
+.calc-button {
+    margin: 3px;
+
+}
+
+.red {
+    background-color: #ED254E;
+}
+
+.red:hover {
+    background-color: #e46b83;
+}
+
+.blue {
+    background-color: #011936;
+}
+
+.blue:hover {
+    background-color: #4fa3e0;
 }
