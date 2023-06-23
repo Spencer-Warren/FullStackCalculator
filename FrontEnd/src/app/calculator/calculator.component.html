@@ -1,0 +1,25 @@
+<div class="container calculator">
+    <div class="row">
+        <div class="col">
+            <h1>Calculator</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h2>{{equationString}}</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h2>{{result}}</h2>
+        </div>
+    </div>
+
+    <div class="row" *ngFor="let row of grid">
+        <div class="col-2" *ngFor="let col of row">
+            <button class="btn btn-primary" (click)="onButtonClick(col)">{{col}}</button>
+        </div>
+    </div>
+</div>

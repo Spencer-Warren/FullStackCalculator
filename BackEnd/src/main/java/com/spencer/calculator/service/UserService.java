@@ -1,6 +1,6 @@
 package com.spencer.calculator.service;
 
-import com.spencer.mealplanning.entity.User;
+import com.spencer.calculator.entity.User;
 import org.springframework.http.ResponseEntity;
 
 public interface UserService {

@@ -1,0 +1,29 @@
+
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.charcoal {
+    background-color: #465362;
+}
+
+.charcoal a {
+    color: #F4FFFD;
+}
+
+.charcoal a:hover {
+    color: #7B8C9A;
+}
+
+.mint {
+    background-color: #D6E3E5;
+}
+
+.calculator {
+    margin: 10px;
+
+    border: #465362 1px solid;
+}
