@@ -15,7 +15,7 @@ export class CalculatorComponent {
     ['0', '.', '=', '+']
   ];
 
-  operatorState: Operator = Operator.NaN;
+  operatorState: string = '';
 
   equationString: string = '';
 
@@ -29,54 +29,22 @@ export class CalculatorComponent {
   constructor() { }
 
   onButtonClick(value: any) {
-    console.log(value);
-    if (Number(value) || value == 0 || value === '.') {
-      this.numStringTemp += value;
-      this.equationString += value;
+    if (value === Operator.Equals) {
+      this.result = eval(this.equationString);
       return;
     }
-
-    this.numTemp = Number(this.numStringTemp);
-    this.numStringTemp = '';
-
-    if (value == Operator.Equals && this.operatorState !== Operator.NaN) {
-      this.calculate();
-      return;
-    }
-    
-    if (value !== Operator.Equals) {
-      this.equationString += value;
-    }
-    
-    this.operatorState = value;
+    this.equationString += value;
   }
 
   calculate() {
-    let number = Number(this.numStringTemp);
-    switch (this.operatorState) {
-      case Operator.Add:
-        this.result = this.numTemp + number;
-        break;
-      case Operator.Subtract:
-        this.result = this.numTemp - number;
-        break;
-      case Operator.Multiply:
-        this.result = this.numTemp * number;
-        break;
-      case Operator.Divide:
-        this.result = this.numTemp / number;
-        break;
-      case Operator.Equals:
-        this.result = number;
-        break;
-      default:
-        break;
-    }
+    
   }
 
 }
 
 enum Operator {
+  
+
   NaN = 'NaN',
   Add = '+',
   Subtract = '-',
