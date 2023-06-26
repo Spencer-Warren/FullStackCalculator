@@ -1,8 +1,8 @@
 package com.spencer.calculator.service;
 
-import com.spencer.mealplanning.entity.User;
-import com.spencer.mealplanning.repository.UserDao;
-import com.spencer.mealplanning.utility.Response;
+import com.spencer.calculator.entity.User;
+import com.spencer.calculator.repository.UserDao;
+import com.spencer.calculator.utility.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

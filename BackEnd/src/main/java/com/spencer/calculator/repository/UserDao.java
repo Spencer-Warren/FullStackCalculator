@@ -1,6 +1,6 @@
 package com.spencer.calculator.repository;
 
-import com.spencer.mealplanning.entity.User;
+import com.spencer.calculator.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
