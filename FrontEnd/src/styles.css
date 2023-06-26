@@ -1,13 +1,22 @@
+.main {
+    margin-bottom: 11%;
+}
 
 footer {
-    position: absolute;
+    position: fixed;
+    height:10%;
+    width:100%;
+    padding-top: 2px;
     bottom: 0;
-    width: 100%;
 }
 
 .charcoal {
     background-color: #465362;
     color: #F4FFFD;
+}
+
+.charcoal.btn:hover {
+    background-color: #7B8C9A;
 }
 
 .charcoal a {
@@ -47,7 +56,8 @@ footer {
 }
 
 .blue:hover {
-    background-color: #4fa3e0;
+    background-color: #033169;
+    color: #F4FFFD;
 }
 
 .form-group {

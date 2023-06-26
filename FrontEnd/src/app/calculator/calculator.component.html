@@ -1,6 +1,20 @@
-<div class="container-fluid m-5">
+<div class="container-fluid mt-5">
     <div class="row">
-        <div class="col-5">
+        <div class="col-sm-8 col-md-4">
+            <div class="border p-3">
+                <h1>Calculator</h1>
+            </div>
+            <div class="container">
+                <div class="row" *ngFor="let row of grid">
+                    <div class="col-3 col-lg-2 col-xxl" *ngFor="let col of row">
+                        <!-- col[1] is the css class for color -->
+                        <button class="btn {{col[1]}} calc-button" (click)="onButtonClick(col[0])">{{col[0]}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5 col-xxl-8">
             <div *ngFor="let equation of equations">
                 {{equation}}
                 <div class="answer">
@@ -8,21 +22,8 @@
                 </div>
                 <hr>
             </div>
-        </div>
-
-        <div class="col-4">
-            <div class="border p-3">
-                <h1>Calculator</h1>
-                <h2 class="text-muted">{{equationString}}</h2>
-                <h2>= {{result}}</h2>
-            </div>
-            <div class="container">
-                <div class="row" *ngFor="let row of grid">
-                    <div class="col-3 " *ngFor="let col of row">
-                        <!-- col[1] is the css class for color -->
-                        <button class="btn {{col[1]}} calc-button" (click)="onButtonClick(col[0])">{{col[0]}}</button>
-                    </div>
-                </div>
+            <div>
+                {{equationString}}
             </div>
         </div>
     </div>
