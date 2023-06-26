@@ -7,6 +7,7 @@ footer {
 
 .charcoal {
     background-color: #465362;
+    color: #F4FFFD;
 }
 
 .charcoal a {
@@ -21,15 +22,15 @@ footer {
     background-color: #D6E3E5;
 }
 
-.calculator {
-    width: 300px;
-    margin: 10px;
-    border: #465362 1px solid;
-}
-
 .calc-button {
     margin: 3px;
+    min-width: 45px;
+    min-height: 10px;
+}
 
+.answer {
+    display: flex;
+    justify-content: flex-end;  
 }
 
 .red {
@@ -42,6 +43,7 @@ footer {
 
 .blue {
     background-color: #011936;
+    color: #F4FFFD;
 }
 
 .blue:hover {

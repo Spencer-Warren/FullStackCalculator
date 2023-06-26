@@ -9,20 +9,20 @@ export class CalculatorComponent {
 
   grid: string[][][] = 
   [
-    [['C',   'red' ], ['CE', 'red'], ['%'], ['/']         ],
-    [['7',   'blue'], ['8', 'blue'], ['9', 'blue'], ['*'] ],
-    [['4',   'blue'], ['5', 'blue'], ['6', 'blue'], ['+'] ],
-    [['1',   'blue'], ['2', 'blue'], ['3', 'blue'], ['-'] ],
-    [['-/+', 'blue'], ['0', 'blue'], ['.'], ['=']         ]
+    [['C',   'red' ], ['CE', 'red'], ['%', 'charcoal'], ['/', 'charcoal'] ],
+    [['7',   'blue'], ['8', 'blue'], ['9', 'blue'],     ['*', 'charcoal'] ],
+    [['4',   'blue'], ['5', 'blue'], ['6', 'blue'],     ['+', 'charcoal'] ],
+    [['1',   'blue'], ['2', 'blue'], ['3', 'blue'],     ['-', 'charcoal'] ],
+    [['(-)', 'blue'], ['0', 'blue'], ['.', 'charcoal'], ['=', 'charcoal'] ]
   ];
 
-  operatorState: string = '';
+  equations: string[] = [
+    '1+1',
+  ];
 
   equationString: string = '';
 
-  numStringTemp: string = '';
-
-  numTemp: number = 0;
+  hasDecimal: boolean = false;
 
   result: number = 0;
 
@@ -30,26 +30,61 @@ export class CalculatorComponent {
   constructor() { }
 
   onButtonClick(value: any) {
-    if (value === Operator.Equals) {
-      this.result = eval(this.equationString);
-      return;
+    switch (value) {
+      case Operator.Equals:
+        this.result = eval(this.equationString);
+        return;
+      case Operator.CE:
+        this.CE();
+        return;
+      case Operator.C:
+        this.C();
+        return;
+      case Operator.Decimal:
+        this.handleDecimal();
+        return;
     }
+    if (-0
+      )
     this.equationString += value;
   }
 
-  calculate() {
-    
+  handleDecimal() {
+    if (this.hasDecimal) return;
+    let indx = this.equationString.search(/[^0-9].?$/);
+    if (indx <= 0) {
+      this.equationString += '0';
+    }
+    this.equationString += '.';
+  }
+
+  CE() {
+    this.equationString = '';
+    this.result = 0;
+  }
+
+  C() {
+    let indx = this.equationString.search(/[^0-9].?$/);
+    if (indx <= 0) {
+      this.CE();
+    }
+    this.equationString = this.equationString.slice(0, indx + 1);
+  }
+
+  eval(equation: string) {
+    return eval(equation);
   }
 
 }
 
 enum Operator {
-  
-
+  CE = 'CE',
+  C = 'C',
   NaN = 'NaN',
   Add = '+',
   Subtract = '-',
   Multiply = '*',
   Divide = '/',
-  Equals = '='
+  Equals = '=',
+  Decimal = '.',
 }
