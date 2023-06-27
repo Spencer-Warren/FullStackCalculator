@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.action.internal.OrphanRemovalAction;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -30,6 +31,11 @@ public class User implements UserDetails {
     private String userPassword;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String userRole;
+
+    @JsonIgnore
+    @OneToMany(orphanRemoval = true)
+    @JoinColumn(name = "equationID")
+    private List<Equation> equations;
 
     @JsonIgnore
     @Override
