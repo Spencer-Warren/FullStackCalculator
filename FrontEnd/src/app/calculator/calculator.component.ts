@@ -1,5 +1,7 @@
 import { HostListener, Component } from "@angular/core";
 import * as math from "mathjs";
+import { Equation } from "../models/Equation";
+import { RestapiService } from "../services/restapi.service";
 
 @Component({
   selector: 'app-calculator',
@@ -20,7 +22,7 @@ export class CalculatorComponent {
     ];
 
 
-  equations: string[][] = [];
+  equations: Equation[] = [];
 
   equationString: string = '';
 
@@ -38,7 +40,7 @@ export class CalculatorComponent {
 
   result: number = 0;
 
-  constructor() { }
+  constructor(private api: RestapiService) { }
 
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
@@ -171,11 +173,17 @@ export class CalculatorComponent {
     if (this.equationString === '') return;
     this.result = this.eval(this.internalEquationString);
     if (this.result === undefined) return;
-    this.equations.push([this.equationString, this.internalEquationString, this.result.toString()]);
+    this.pushEquation();
     this.equationString = '';
     this.internalEquationString = '';
   }
 
+  pushEquation() {
+    let equation: Equation = new Equation(0, this.equationString, this.result.toString());
+    console.log(equation);
+    this.equations.push(equation);
+    this.api.saveEquation(equation).subscribe();
+  }
 }
 
 enum Operator {

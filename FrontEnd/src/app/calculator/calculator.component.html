@@ -20,9 +20,9 @@
             </div>
             <hr>
             <div *ngFor="let equation of equations">
-                {{equation[0]}}
+                {{equation.EquationString}}
                 <div class="answer">
-                    {{equation[2]}}
+                    {{equation.Solution}}
                 </div>
                 <hr>
             </div>
