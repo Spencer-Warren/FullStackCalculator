@@ -15,7 +15,7 @@ export class RestapiService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': 'localhost:4200', // CORS
+      'Access-Control-Allow-Origin': '*', // CORS
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE', // CORS
       'Access-Control-Allow-Headers': 'X-Requested-With,content-type', // CORS
       'Access-Control-Allow-Credentials': 'true', // CORS

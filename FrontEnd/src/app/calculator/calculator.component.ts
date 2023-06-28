@@ -2,6 +2,7 @@ import { HostListener, Component } from "@angular/core";
 import * as math from "mathjs";
 import { Equation } from "../models/Equation";
 import { RestapiService } from "../services/restapi.service";
+import { AccountServiceService } from "../services/account-service.service";
 
 @Component({
   selector: 'app-calculator',
@@ -40,7 +41,22 @@ export class CalculatorComponent {
 
   result: number = 0;
 
-  constructor(private api: RestapiService) { }
+  constructor(private api: RestapiService, private accountService: AccountServiceService) {
+    if (accountService.isLoggedIn) {
+      this.fetchEquations();
+    }
+  }
+
+  fetchEquations() {
+    this.api.getEquations().subscribe((data: any) => {
+      for (let i = 0; i < data.body.length; i++) {
+        let temp = data.body[i];
+        let equation = Equation.fromJSON(temp);
+        this.equations.push(equation);
+      }
+    });
+  }
+
 
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
@@ -160,12 +176,10 @@ export class CalculatorComponent {
   }
 
   // evaluate the equation using mathjs
-  // mathjs is used because it can handle exponents
   eval(equation: string) {
     if (equation === '') return;
     if (this.isParenthesisOpen) return;
     let copy = String(equation);
-    console.log(copy);
     return math.evaluate(copy);
   }
 
@@ -180,9 +194,10 @@ export class CalculatorComponent {
 
   pushEquation() {
     let equation: Equation = new Equation(0, this.equationString, this.result.toString());
-    console.log(equation);
     this.equations.push(equation);
-    this.api.saveEquation(equation).subscribe();
+    if (this.accountService.isLoggedIn) {
+      this.api.saveEquation(equation).subscribe();
+    }
   }
 }
 

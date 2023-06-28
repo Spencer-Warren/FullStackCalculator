@@ -23,5 +23,8 @@ export class Equation {
         return this.solution;
     }
 
+    static fromJSON(json: any): Equation {
+        return new Equation(json.equationID, json.equationString, json.solution);
+    }
     
 }
