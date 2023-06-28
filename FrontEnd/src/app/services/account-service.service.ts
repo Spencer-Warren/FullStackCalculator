@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/User';
+import { Buffer } from 'buffer';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -11,9 +12,11 @@ export class AccountServiceService {
 
   updateAccount(user: User) {
     if (sessionStorage.getItem('token') == null || this.isUserChanged(user)) {
-      sessionStorage.setItem('token', this.getAuthenticationToken(user.username, user.userPassword));
+      console.log('updateAccount: ' + user.username + ' ' + user.userPassword);
+      let token = this.getAuthenticationToken(user.username, user.userPassword);  
+      sessionStorage.setItem('token', token);
     }
-    
+    user.userPassword = ''; // Remove password for security
     sessionStorage.setItem('user', JSON.stringify(user));
   }
 
@@ -23,7 +26,7 @@ export class AccountServiceService {
   }
   
   getAuthenticationToken(username: string, password: string) {
-    return 'basic ' + btoa(username + ':' + password);
+    return 'basic ' + Buffer.from(username + ':' + password).toString('base64');
   }
   
   isUserChanged(user: User): boolean {

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParamsOptions } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../models/User';
+import { Equation } from '../models/Equation';
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +15,22 @@ export class RestapiService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*', // CORS
+      'Access-Control-Allow-Origin': 'localhost:4200', // CORS
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE', // CORS
       'Access-Control-Allow-Headers': 'X-Requested-With,content-type', // CORS
-      'Access-Control-Allow-Credentials': 'true' // CORS
+      'Access-Control-Allow-Credentials': 'true', // CORS
+      'Vary': 'Origin' // CORS
     }),
     observe: 'response' as 'response'
   };
 
   get user(): User {
     return JSON.parse(sessionStorage.getItem('user') || '{}');
+  }
+
+  addUser(object: any) {
+    object.user = this.user;
+    return object;
   }
 
   registerUser(user: User): Observable<any> {
@@ -43,4 +50,16 @@ export class RestapiService {
   }
 
 
+  getEquations(): Observable<any> {
+    return this.http.get<any>(this.url + '/equation/' + this.user.userID, this.httpOptions);
+  }
+
+  saveEquation(equation: Equation): Observable<any> {
+    equation = this.addUser(equation);
+    return this.http.put<any>(this.url + '/equation', equation, this.httpOptions);
+  }
+
+  deleteEquation(equation: Equation): Observable<any> {
+    return this.http.delete<any>(this.url + '/equation', { headers: this.httpOptions.headers, observe: 'response', body: equation });
+  }
 }
