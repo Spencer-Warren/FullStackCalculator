@@ -28,6 +28,7 @@ export class LoginComponent {
         (res) => {
           if (res.status == 200) {
             alert('Login successful');
+            res.body.userPassword = user.userPassword; // Keep password for authentication
             this.account.updateAccount(res.body);
             this.router.navigate(['calculator']);
           }
