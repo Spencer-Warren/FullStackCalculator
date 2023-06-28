@@ -2,7 +2,6 @@ package com.spencer.calculator.controller;
 
 import com.spencer.calculator.entity.Equation;
 import com.spencer.calculator.service.EquationService;
-import com.spencer.calculator.service.EquationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/equation")
 public class EquationController {
     @Autowired
