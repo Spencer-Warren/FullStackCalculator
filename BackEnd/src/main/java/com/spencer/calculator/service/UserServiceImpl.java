@@ -39,8 +39,6 @@ public class UserServiceImpl implements UserService {
         dao.findById(user.getUserID())
                 .ifPresent(u -> {
             u.setUsername(user.getUsername());
-            u.setFirstName(user.getFirstName());
-            u.setLastName(user.getLastName());
             u.setUserEmail(user.getUserEmail());
             dao.save(u);
         });

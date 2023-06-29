@@ -1,18 +1,19 @@
 import { e } from "mathjs";
 
 export class Equation {
-    private equationID: number = 0;
+    private equationID: number | undefined;
     private equationString: string = '';
     private solution: string = '';
 
-    constructor(equationID: number, equationString: string, solution: string, userID?: number) {
-        this.equationID = equationID;
+    constructor(equationString: string, solution: string, equationID?: number,  userID?: number) {
+        if (equationID) this.equationID = equationID;
         this.equationString = equationString;
         this.solution = solution;
     }
 
     get EquationID(): number {
-        return this.equationID;
+        if (this.equationID) return this.equationID;
+        return -1;
     }
 
     get EquationString(): string {
@@ -24,7 +25,11 @@ export class Equation {
     }
 
     static fromJSON(json: any): Equation {
-        return new Equation(json.equationID, json.equationString, json.solution);
+        return new Equation(json.equationString, json.solution, json.equationID);
+    }
+
+    static fromFront(equation: string, solution: string) {
+        return new Equation(equation, solution);
     }
     
 }

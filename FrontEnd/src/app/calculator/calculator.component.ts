@@ -193,7 +193,7 @@ export class CalculatorComponent {
   }
 
   pushEquation() {
-    let equation: Equation = new Equation(0, this.equationString, this.result.toString());
+    let equation: Equation = Equation.fromFront(this.equationString, this.result.toString());
     this.equations.push(equation);
     if (this.accountService.isLoggedIn) {
       this.api.saveEquation(equation).subscribe();

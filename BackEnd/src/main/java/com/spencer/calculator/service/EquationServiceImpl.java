@@ -17,6 +17,7 @@ public class EquationServiceImpl implements EquationService{
 
     @Override
     public Equation newEquation(Equation equation) {
+        System.out.println(equation);
         return dao.save(equation);
     }
 
